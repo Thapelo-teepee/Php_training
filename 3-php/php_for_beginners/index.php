@@ -15,13 +15,20 @@
     </style>
 </head>
 <body>
-    <h1>
-        <?php
+             <?php
 
-            $greeting = "Hello there";
+            $bookname = "Dark matter.";
+            $isread = false;
 
-          echo "$greeting" . "read Dark matter";
+             if($isread) {
+                $message =  "you have read $bookname";
+             } else {
+                $message = "you have not read $bookname";
+             }
         ?>
+    <h1>
+
+        <?php echo $message ?>
     </h1>
 </body>
 </html>
