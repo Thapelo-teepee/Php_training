@@ -17,7 +17,10 @@
 <body>
     <h1>
         <?php
-          echo "you have, read Dark matter.";
+
+            $greeting = "Hello there";
+
+          echo "$greeting" . "read Dark matter";
         ?>
     </h1>
 </body>
