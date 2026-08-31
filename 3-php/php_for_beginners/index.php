@@ -17,18 +17,18 @@
 <body>
              <?php
 
-            $bookname = "Dark matter.";
-            $isread = false;
-
-             if($isread) {
-                $message =  "you have read $bookname";
-             } else {
-                $message = "you have not read $bookname";
-             }
+            $books = [
+                "Project Hail Mary", 
+                "The Langoliers", 
+                "Do Androids Dream of Electronic "
+            ]
         ?>
-    <h1>
-
-        <?php echo $message ?>
-    </h1>
+     <ul>
+        <?php
+           foreach($books as $book) {
+             echo "<li>$book</li>"; 
+           }
+        ?>
+     </ul>
 </body>
 </html>
