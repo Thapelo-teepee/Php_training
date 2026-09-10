@@ -21,6 +21,8 @@ function fibonacci($n) {
 }
 
 
-$Fibo = fibonacci(10);
 
-echo json_encode($Fibo);
+$Fibos = fibonacci($_POST["number"]);
+
+
+require "index.view.php";
