@@ -3,8 +3,9 @@ $("#innerForm").on("submit", function (e) {
   e.preventDefault();
   $.post("index.php", $(this).serialize() + "&action=create", function (res) {
     const result = JSON.parse(res);
-    const form = this;
     $("#response").text(result.message);
+
+    window.location.reload();
   });
 });
 
