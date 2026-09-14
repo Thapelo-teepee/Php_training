@@ -1,6 +1,5 @@
 // Create Person onsubmit form
 $("#innerForm").on("submit", function (e) {
-  console.log("Hey there!");
   e.preventDefault();
   $.post("index.php", $(this).serialize() + "&action=create", function (res) {
     const result = JSON.parse(res);

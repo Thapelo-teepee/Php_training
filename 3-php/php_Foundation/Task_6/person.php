@@ -77,7 +77,7 @@ class Person {
 
     }
         static function deleteAllPerson($pdo,) {
-        $sql = "DELETE * FROM Person";
+        $sql = "DELETE FROM Person";
 
         $statement = $pdo->prepare($sql);
 
