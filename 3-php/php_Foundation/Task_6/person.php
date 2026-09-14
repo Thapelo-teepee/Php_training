@@ -67,8 +67,8 @@ class Person {
     }
 
       static function deletePerson($pdo, $PersonID) {
-        $sql = "DELETE * FROM Person
-        where PersonID = :PersonID";
+        $sql = "DELETE FROM Person
+         WHERE PersonID = :PersonID";
 
         $statement = $pdo->prepare($sql);
         $statement->execute([

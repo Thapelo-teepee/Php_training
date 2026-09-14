@@ -30,7 +30,7 @@
         width: 100%;
     }
 
-    .innerForm {
+    #innerForm {
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -43,13 +43,18 @@
         width: 80px;
         border-radius: 8px;
     }
+    /* #deleteAllButton {
+        align-self: flex-end;
+    } */
 </style>
+
+
 <body>
     <div class="container">
         <div class="form" >
 
            <h2>FORM</h2>
-            <form class="innerForm" method="POST" action="index.php">
+            <form id="innerForm" method="POST" >
 
                 <input name="firstname" placeholder="First Name">
 
@@ -61,9 +66,11 @@
 
                 <input type="number" name="age" placeholder="age">
 
-                <button type="submit" class="submitButton" >Add Person</button>
+                <button type="submit" class="submitButton" >Create Person</button>
 
        </form>
+
+           <p id="response"></p>
         </div>
         <div class="table">
             <h2 >People</h2>
@@ -98,7 +105,7 @@
                                     Edit
                                 </button>
 
-                                <button>
+                                <button class="deleteButton" data-id="<?=$person['PersonID'] ?>">
                                     Delete
                                 </button>
                             </td>
@@ -108,8 +115,17 @@
 
                 </tbody>
             </table>
+            <button id="deleteAllButton" >
+                    Delete All
+          </button>
         </div>
     </div>
+
+ <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="jquery.js">
+
+</script>
 
 </body>
 </html>

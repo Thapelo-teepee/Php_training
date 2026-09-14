@@ -8,60 +8,63 @@ require "person.php";
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+      $action = $_POST['action'] ?? '';
+
         try {
-            Person::createPerson($pdo, $_POST['firstname'], $_POST['surname'], $_POST['dateOfBirth'], $_POST['emailaddress'], $_POST['age']);
+            if($action === 'create') {
+               Person::createPerson($pdo, $_POST['firstname'], $_POST['surname'], $_POST['dateOfBirth'], $_POST['emailaddress'], $_POST['age']);
 
-         echo "Person Created successfully!";
-         header("Location: index.php?success=1");
-        exit;
-        } catch (Exception $e) {
+            echo json_encode(['status'=> 'success','message'=> 'Person created succefully!']);
+            exit;
 
-            echo "Failed to create Person: " . $e->getMessage() . "";
+            };
+
+
+        if ($action === 'load') {
+
+            $PersonID = $_POST['PersonID'];
+
+            Person::loadPerson( $pdo, $PersonID );
+
+            echo json_encode(['status'=> 'success','message'=> 'Person loaded succefully!']);
+            exit;
+        };
+
+        if ($action === 'save') {
+
+            Person::savePerson($pdo, $_POST['PersonID'], $_POST['firstname'], $_POST['surname'], $_POST['dateOfBirth'], $_POST['emailaddress'], $_POST['age']);
+
+            echo json_encode(['status'=> 'success','message'=> 'Person updated Succefully!']);
+            exit;
         }
-};
+        ;
 
+        if($action === 'delete'){
 
-$LoadPerson = function ($PersonID) {
-    try {
-      Person::loadPerson($pdo, $PersonID);
+            $PersonID = $_POST['PersonID'];
+            Person::deletePerson($pdo,$PersonID);
+             echo json_encode(['status'=> 'success','message'=> 'Person deleted succefully!']);
+             exit;
+        };
 
-        echo "Person Loaded successfully!";
+        if($action === 'deteteall') {
+
+            Person::deleteAllPerson($pdo);
+
+            echo json_encode(['status'=> 'success','message'=>'deleted all succefully!']);
+
+            exit;
+
+        }
+
     } catch (Exception $e) {
-       echo "Person Not Found :" . $e->getMessage() . "";
-    }
-};
 
-$SavePerson = function ( $PersonID ,$FirstName, $Surname, $DateOfBirth, $Emailaddress, $Age) {
+            echo json_encode(['status'=> 'error','message'=> $e->getMessage()]);
+        }
 
-    try {
-        Person::savePerson($pdo, $PersonID, $FirstName, $Surname, $DateOfBirth, $Emailaddress, $Age);
-
-        echo "Person $FirstName saved successfully!";
-    } catch (Exception $e) {
-        echo "Failed to save $FirstName :" . $e->getMessage() . "";
-    };
+    exit;
 };
 
 
-$DeletePerson = function ($PersonId) {
-    try {
-        Person::deletePerson($pdo, $PersonId);
-
-        echo "Person deleted successfully!";
-    } catch (Exception $e) {
-        echo "Failed to delete Person: " . $e->getMessage() . "";
-    }
-};
-
-$DeleteAllPerson = function () {
-    try {
-        Person::deleteAllPerson($pdo);
-
-        echo "Deleted successfully!";
-    } catch (Exception $e) {
-       
-        echo "Failed to delete all: " . $e->getMessage() . "";
-    }
-};
 
 require "index.view.php";
