@@ -2,15 +2,11 @@
 
 class Palindrome {
 
-    public static function isPalindrome(string $word){
-        $LowercaseWord = strtolower($word);
-        $TrimedWord = str_ireplace(' ', '', $LowercaseWord);
-        $ReveredWord = strrev($TrimedWord);
-
-        if ($TrimedWord === $ReveredWord) {
-            return true;
-        }
-        return false;
+  static function isPalindrome(string $word){
+     $LowercaseWord = strtolower($word);
+    $TrimedWord = str_ireplace(' ', '', $LowercaseWord);
+    $ReveredWord = strrev($TrimedWord);
+    return $TrimedWord === $ReveredWord;
     }
 }
 
